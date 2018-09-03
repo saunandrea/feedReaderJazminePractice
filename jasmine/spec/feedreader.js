@@ -73,6 +73,7 @@ $(function () {
 
         it('should have at least one entry', function (done) {
             expect($(".feed .entry")).toBeDefined();
+            expect($(".feed .entry h2").first().text().length).not.toBe(0);
             done();
         })
 
