@@ -13,20 +13,20 @@ $(function () {
     * a related set of tests. This suite is all about the RSS
     * feeds definitions, the allFeeds variable in our application.
     */
-    describe('RSS Feeds', function () {
-        it('are defined', function () {
+    describe('RSS Feeds', () => {
+        it('are defined', () => {
             expect(allFeeds).toBeDefined();
             expect(allFeeds.length).not.toBe(0);
         });
 
-        it('has non-empty urls', function () {
+        it('has non-empty urls', () => {
             allFeeds.forEach(element => {
                 expect(element).toBeDefined();
                 expect(element.url.length).not.toBe(0);
             });
         })
 
-        it('has non-empty names', function () {
+        it('has non-empty names', () => {
             allFeeds.forEach(element => {
                 expect(element).toBeDefined();
                 expect(element.name.length).not.toBe(0);
@@ -35,13 +35,13 @@ $(function () {
 
     });
 
-    describe('The menu', function () {
+    describe('The menu', () => {
 
-        it('is hidden by default', function () {
+        it('is hidden by default', () => {
             expect(document.body.classList.contains("menu-hidden")).toBe(true);
         });
 
-        it('it shows menu on first click and hides menu on 2nd click', function () {
+        it('it shows menu on first click and hides menu on 2nd click', () => {
             $(".menu-icon-link").click();
             expect(document.body.classList.contains("menu-hidden")).toBe(false);
             $(".menu-icon-link").click();
@@ -50,15 +50,15 @@ $(function () {
 
     });
 
-    describe('Initial Entries', function () {
+    describe('Initial Entries', () => {
 
-        beforeEach(function (done) {
-            loadFeed(0, function () {
+        beforeEach((done) => {
+            loadFeed(0, () => {
                 done();
             });
         });
 
-        it('should have at least one entry', function (done) {
+        it('should have at least one entry', (done) => {
             expect($(".feed .entry").length).toBeGreaterThan(0);
             done();
         })
@@ -66,20 +66,20 @@ $(function () {
 
     });
 
-    describe('New Feed Selection', function () {
+    describe('New Feed Selection', () => {
 
         /*saves the text of first entry to compare that entries are changing*/
         var firstFeed;
-        beforeEach(function (done) {
-            loadFeed(0, function () {
+        beforeEach((done) => {
+            loadFeed(0, () => {
                 firstFeed = $(".feed .entry").first().text();
-                loadFeed(1, function () {
+                loadFeed(1, () => {
                     done();
                 });
             });
         });
 
-        it('should have updated the feed list', function (done) {
+        it('should have updated the feed list', (done) => {
             expect($(".feed .entry h2").first().text()).not.toBe(firstFeed);
             done();
         })
